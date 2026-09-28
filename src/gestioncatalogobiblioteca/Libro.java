@@ -1,8 +1,5 @@
 package gestioncatalogobiblioteca;
 
-// Clase marcada como final: garantiza sus invariantes exclusivamente en el
-// constructor canónico, y no está pensada para que una subclase pueda
-// heredar y romper esa garantía agregando o alterando comportamiento.
 public final class Libro {
 
     private final String titulo;
@@ -41,10 +38,6 @@ public final class Libro {
             this.copiasDisponibles = copiasDisponibles;
         }
 
-        // El precio arranca en 15000.0 (el valor por defecto) y solo se
-        // reemplaza si setPrecioReposicion -la MISMA regla que usa el
-        // setter público- acepta el valor recibido. Así la validación del
-        // precio no está escrita dos veces.
         this.precioReposicion = 15000.0;
         if (!setPrecioReposicion(precioReposicion)) {
             System.out.println("Precio de reposición inválido, se usó $15000.0 por defecto.");
@@ -52,15 +45,8 @@ public final class Libro {
     }
 
     public Libro(String titulo, String autor, String isbn) {
-        // Constructor de conveniencia: this(...) tiene que ser la primera
-        // sentencia. Delega toda la validación en el constructor canónico,
-        // arrancando con 1 copia y el precio por defecto.
         this(titulo, autor, isbn, 1, 15000.0);
     }
-
-    // new Libro(); no compilaría: al declarar estos dos constructores propios,
-    // el constructor sin argumentos que el compilador regalaba por defecto
-    // dejó de existir.
 
     public String getTitulo() {
         return titulo;
